@@ -22,3 +22,47 @@ The test data are available here:
 https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
 
 The data for this project come from this source: http://groupware.les.inf.puc-rio.br/har. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. 
+
+
+Course Project: Writeup
+========================================================
+
+# Reading data into R from source.
+
+```{r}
+# training set
+
+tr <- read.table("F:/+Machine learning coursera/Practical_Machine_Learning_Assignment1/pml-training.csv", header=TRUE, sep=",")
+
+# test set
+
+ts <- read.table("F:/+Machine learning coursera/Practical_Machine_Learning_Assignment1/pml-testing.csv", header=TRUE, sep=",")
+```
+
+
+
+
+
+# Pre-procesing
+
+```{r}
+library(caret)
+
+# removing outcome and string variables from dataset
+
+trn<-tr[,c(-1,-2,-3,-4,-5,-160)]
+nzv <- nearZeroVar(trn, freqCut = 95/5, uniqueCut = 10, saveMetrics = TRUE)
+
+# find a Mean of percentUnique
+summary(nzv)
+
+# a list (names_pred) of non zero variance variables that satisfies nzv = FALSE and percentUnique > 3.89
+
+predictors<-nzv[which(nzv$nzv=='FALSE'&nzv$percentUnique>3.89),]
+
+names_pred<-data.frame(rownames(predictors))
+
+
+```
+
+
