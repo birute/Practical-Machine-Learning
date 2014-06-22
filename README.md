@@ -27,7 +27,7 @@ The data for this project come from this source: http://groupware.les.inf.puc-ri
 Course Project: Writeup
 ========================================================
 
-# Reading data into R from source.
+# Reading data into R from source
 
 ```{r}
 # training set
